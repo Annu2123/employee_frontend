@@ -2,7 +2,7 @@ export interface User {
     id: string;
     name: string;
     email: string;
-    role: 'owner' | 'employee';
+    role: 'owner' | 'super_admin';
 }
 
 export interface Employee {
@@ -38,4 +38,14 @@ export interface SalaryAdvance {
     amount: number;
     date: string;
     reason: string;
+}
+export interface AuthResponse {
+    token: string;
+    role: string;
+    name: string;
+    _id: string;
+}
+export interface LoginCredetial {
+    email: string;
+    password: string;
 }
