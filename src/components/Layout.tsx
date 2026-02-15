@@ -6,7 +6,6 @@ const Layout: React.FC = () => {
     const { user, logout } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-
     const handleLogout = () => {
         logout();
         navigate('/login');
@@ -21,22 +20,42 @@ const Layout: React.FC = () => {
                 <div className="p-4 text-2xl font-bold border-b border-gray-800">
                     EmpManager
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
-                    <Link to="/" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/')}`}>
-                        Dashboard
-                    </Link>
-                    {user?.role === 'owner' && (
-                        <Link to="/employees" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/employees')}`}>
-                            Employees
-                        </Link>
-                    )}
-                    <Link to="/attendance" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/attendance')}`}>
-                        Attendance
-                    </Link>
-                    <Link to="/salary" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/salary')}`}>
-                        Salary
-                    </Link>
-                </nav>
+                {
+                    user?.role === "owner" && (
+                        <>
+                            <nav className="flex-1 p-4 space-y-2">
+                                <Link to="/" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/')}`}>
+                                    Dashboard
+                                </Link>
+                                {user?.role === 'owner' && (
+                                    <Link to="/employees" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/employees')}`}>
+                                        Employees
+                                    </Link>
+                                )}
+                                <Link to="/attendance" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/attendance')}`}>
+                                    Attendance
+                                </Link>
+                                <Link to="/salary" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/salary')}`}>
+                                    Salary
+                                </Link>
+                            </nav>
+                        </>
+                    )
+                }
+
+                {
+                    user?.role === "super_admin" && (
+                        <>
+                            <nav className="flex-1 p-4 space-y-2">
+
+                                <Link to="/superadmin" className={`block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 ${isActive('/superadmin')}`}>
+                                    Dashboard
+                                </Link>
+                            </nav>
+                        </>
+
+                    )
+                }
                 <div className="p-4 border-t border-gray-800">
                     <div className="mb-2 text-sm text-gray-400">Logged in as: {user?.name}</div>
                     <button
