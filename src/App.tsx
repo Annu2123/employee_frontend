@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import EmployeeManagement from './pages/EmployeeManagement';
 import Attendance from './pages/Attendance';
 import Salary from './pages/Salary';
+import SuperDashboard from './components/superadmin/superDashboard';
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { token, isLoading } = useAuth();
@@ -16,6 +17,9 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
 };
 
 function App() {
+
+  const { user } = useAuth()
+  console.log(user, "user")
   return (
     <Router>
       <Routes>
@@ -26,6 +30,8 @@ function App() {
             <Layout />
           </ProtectedRoute>
         }>
+
+          <Route path="superadmin" element={<SuperDashboard />} />
           <Route index element={<Dashboard />} />
           <Route path="employees" element={<EmployeeManagement />} />
           <Route path="attendance" element={<Attendance />} />

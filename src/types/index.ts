@@ -49,3 +49,11 @@ export interface LoginCredetial {
     email: string;
     password: string;
 }
+
+export interface Owner {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+    isVerified: boolean;
+}
